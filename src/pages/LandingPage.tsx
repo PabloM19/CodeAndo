@@ -24,10 +24,10 @@ export function LandingPage() {
           {landingContent.heroSubtitle}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg" variant="secondary">
+          <Button asChild size="lg" variant="secondary" className="bg-[#deffa0] hover:bg-[#feffda] text-neutral-900">
             <Link to="/lessons">{landingContent.ctaPrimary}</Link>
           </Button>
-          <Button asChild size="lg" variant="outline">
+          <Button asChild size="lg" variant="outline" className="hover:bg-[#ffece3] border-2">
             <Link to="/lessons">{landingContent.ctaSecondary}</Link>
           </Button>
         </div>
@@ -36,16 +36,32 @@ export function LandingPage() {
       {/* Features */}
       <section className="mb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {landingContent.features.map((feature, idx) => (
-            <Card key={idx} className="border-neutral-200 rounded-[22px]">
-              <CardHeader>
-                <CardTitle className="text-lg">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>{feature.description}</CardDescription>
-              </CardContent>
-            </Card>
-          ))}
+          {landingContent.features.map((feature, idx) => {
+            const bgColors = [
+              'bg-[#f9e0e0]/30',
+              'bg-[#ffece3]/30',
+              'bg-[#feffda]/30',
+              'bg-[#deffa0]/30',
+              'bg-[#d0fff8]/30',
+            ];
+            const borderColors = [
+              'border-[#f9e0e0]',
+              'border-[#ffece3]',
+              'border-[#feffda]',
+              'border-[#deffa0]',
+              'border-[#d0fff8]',
+            ];
+            return (
+              <Card key={idx} className={`${bgColors[idx % 5]} ${borderColors[idx % 5]} border-2 rounded-[22px]`}>
+                <CardHeader>
+                  <CardTitle className="text-lg">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription>{feature.description}</CardDescription>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </section>
 
@@ -55,31 +71,41 @@ export function LandingPage() {
           Cómo funciona
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {landingContent.howItWorksSteps.map((step, idx) => (
-            <Card key={idx} className="border-neutral-200 rounded-[22px]">
-              <CardHeader>
-                <div className="flex items-center gap-2 mb-2">
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-neutral-900 font-bold ${
-                    idx % 5 === 0 ? 'bg-accent-pink' :
-                    idx % 5 === 1 ? 'bg-accent-peach' :
-                    idx % 5 === 2 ? 'bg-accent-yellow' :
-                    idx % 5 === 3 ? 'bg-accent-green' :
-                    'bg-accent-turquoise'
-                  }`}>
-                    {idx + 1}
+          {landingContent.howItWorksSteps.map((step, idx) => {
+            const bgColors = [
+              'bg-[#f9e0e0]',
+              'bg-[#ffece3]',
+              'bg-[#feffda]',
+              'bg-[#deffa0]',
+              'bg-[#d0fff8]',
+            ];
+            const borderColors = [
+              'border-[#f9e0e0]',
+              'border-[#ffece3]',
+              'border-[#feffda]',
+              'border-[#deffa0]',
+              'border-[#d0fff8]',
+            ];
+            return (
+              <Card key={idx} className={`${borderColors[idx % 5]} border-2 rounded-[22px]`}>
+                <CardHeader>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-neutral-900 font-bold ${bgColors[idx % 5]}`}>
+                      {idx + 1}
+                    </div>
                   </div>
-                </div>
-                <CardTitle className="text-lg">{step}</CardTitle>
-              </CardHeader>
-            </Card>
-          ))}
+                  <CardTitle className="text-lg">{step}</CardTitle>
+                </CardHeader>
+              </Card>
+            );
+          })}
         </div>
       </section>
 
       {/* Continuar */}
       {lastTouched && (
         <section className="mb-24">
-          <Card className="border-accent-peach bg-accent-yellow/30 rounded-[22px]">
+          <Card className="border-[#ffece3] border-2 bg-[#feffda]/40 rounded-[22px]">
             <CardHeader>
               <CardTitle className="text-2xl mb-2">
                 Continúa donde lo dejaste
@@ -109,8 +135,8 @@ export function LandingPage() {
                 <div className="flex flex-wrap gap-4 pt-4 border-t border-neutral-200">
                   {streak > 0 && (
                     <div className="flex items-center gap-2">
-                      <div className="p-1.5 bg-accent-peach/30 rounded-[8px]">
-                        <Flame className="w-4 h-4 text-accent-peach" />
+                      <div className="p-1.5 bg-[#ffece3] rounded-[8px]">
+                        <Flame className="w-4 h-4 text-[#ff6b35]" />
                       </div>
                       <div>
                         <p className="text-xs text-neutral-500">Racha</p>
@@ -122,8 +148,8 @@ export function LandingPage() {
                   )}
                   {stats.totalChallengesCompleted > 0 && (
                     <div className="flex items-center gap-2">
-                      <div className="p-1.5 bg-accent-turquoise/30 rounded-[8px]">
-                        <CheckCircle2 className="w-4 h-4 text-accent-turquoise" />
+                      <div className="p-1.5 bg-[#d0fff8] rounded-[8px]">
+                        <CheckCircle2 className="w-4 h-4 text-[#00b4a6]" />
                       </div>
                       <div>
                         <p className="text-xs text-neutral-500">Retos completados</p>
@@ -142,7 +168,7 @@ export function LandingPage() {
 
       {/* Final CTA */}
       <section className="text-center">
-        <Card className="bg-accent-yellow/20 border-accent-green rounded-[22px]">
+        <Card className="bg-[#feffda]/40 border-[#deffa0] border-2 rounded-[22px]">
           <CardHeader>
             <CardTitle className="text-2xl mb-2">
               {landingContent.finalCtaTitle}
@@ -153,11 +179,11 @@ export function LandingPage() {
           </CardHeader>
           <CardContent>
             {lastTouched ? (
-              <Button asChild size="lg" variant="secondary">
+              <Button asChild size="lg" variant="secondary" className="bg-[#deffa0] hover:bg-[#feffda] text-neutral-900">
                 <Link to="/lessons">{landingContent.finalCtaButton}</Link>
               </Button>
             ) : (
-              <Button asChild size="lg" variant="secondary">
+              <Button asChild size="lg" variant="secondary" className="bg-[#deffa0] hover:bg-[#feffda] text-neutral-900">
                 <Link to="/lesson/01-html-base/play">
                   Empezar por Lección 1
                   <ArrowRight className="w-5 h-5 ml-2" />
