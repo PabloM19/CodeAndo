@@ -1,0 +1,140 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+@layer base {
+  :root {
+    /* Paleta pastel para resaltar elementos */
+    --accent: #deffa0; /* Verde claro - color principal */
+    --accent-pink: #f9e0e0; /* Rosa pálido */
+    --accent-peach: #ffece3; /* Melocotón */
+    --accent-yellow: #feffda; /* Amarillo lima */
+    --accent-green: #deffa0; /* Verde claro */
+    --accent-turquoise: #d0fff8; /* Turquesa */
+    
+    --text-primary: #111;
+    --text-secondary: #6b7280;
+    --text-tertiary: #374151;
+    --border: #e5e7eb;
+    --bg: #ffffff;
+  }
+
+  body {
+    @apply bg-white text-[#111] font-sans antialiased;
+    font-family: system-ui, sans-serif;
+  }
+
+  /* Focus visible accesible */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-offset-2 ring-offset-white;
+    --tw-ring-color: var(--accent-green);
+  }
+}
+
+@layer utilities {
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:text-neutral-900 focus:rounded-lg focus:font-medium;
+  }
+  
+  .skip-link:focus {
+    background-color: var(--accent-green);
+  }
+}
+
+/* Prose styles personalizados para teoría */
+@layer components {
+  .prose {
+    @apply text-[#111];
+  }
+
+  .prose p {
+    @apply text-[#374151] leading-relaxed mb-4;
+  }
+
+  .prose h1 {
+    @apply text-[#111] font-bold tracking-tight mb-4 mt-8;
+  }
+
+  .prose h2 {
+    @apply text-[#111] font-bold tracking-tight mb-3 mt-6 text-2xl;
+  }
+
+  .prose h3 {
+    @apply text-[#111] font-semibold tracking-tight mb-2 mt-4 text-xl;
+  }
+
+  .prose h4 {
+    @apply text-[#111] font-semibold mb-2 mt-4;
+  }
+
+  .prose a {
+    @apply text-[#111] underline decoration-1 underline-offset-2 decoration-[#111]/30 transition-colors;
+  }
+
+  .prose a:hover {
+    color: var(--accent-green);
+    text-decoration-color: var(--accent-green);
+  }
+
+  .prose a:focus-visible {
+    @apply outline-none ring-2 ring-offset-2 ring-offset-white rounded-sm;
+    --tw-ring-color: var(--accent-green);
+  }
+
+  .prose code {
+    @apply bg-[#f3f4f6] text-[#111] px-1.5 py-0.5 rounded-[14px] text-sm font-mono border border-[#e5e7eb];
+  }
+
+  .prose pre {
+    @apply bg-[#f3f4f6] border border-[#e5e7eb] rounded-[18px] p-4 overflow-x-auto mb-4;
+  }
+
+  .prose pre code {
+    @apply bg-transparent p-0 border-0 rounded-none text-sm;
+  }
+
+  .prose ul,
+  .prose ol {
+    @apply mb-4 space-y-2;
+  }
+
+  .prose ul {
+    @apply list-disc list-inside;
+  }
+
+  .prose ol {
+    @apply list-decimal list-inside;
+  }
+
+  .prose li {
+    @apply text-[#374151] ml-4;
+  }
+
+  .prose blockquote {
+    @apply pl-4 py-2 my-4 italic text-neutral-500 bg-neutral-50 rounded-r-lg;
+    border-left: 4px solid var(--accent-peach);
+  }
+
+  .prose strong {
+    @apply font-semibold text-[#111];
+  }
+
+  .prose em {
+    @apply italic text-[#374151];
+  }
+
+  .prose hr {
+    @apply border-[#e5e7eb] my-8;
+  }
+
+  .prose table {
+    @apply w-full border-collapse mb-4;
+  }
+
+  .prose th {
+    @apply border border-[#e5e7eb] px-4 py-2 bg-[#f9fafb] font-semibold text-[#111];
+  }
+
+  .prose td {
+    @apply border border-[#e5e7eb] px-4 py-2 text-[#374151];
+  }
+}
